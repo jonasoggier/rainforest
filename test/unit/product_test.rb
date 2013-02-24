@@ -25,4 +25,11 @@ class ProductTest < ActiveSupport::TestCase
     @p.price_in_cents = 1.5
     refute @p.valid?
   end
+
+  test "has a formatted price" do
+    assert_equal "0.01", Product.new(:price_in_cents => 1).formatted_price
+    assert_equal "0.99", Product.new(:price_in_cents => 99).formatted_price
+    assert_equal "1.00", Product.new(:price_in_cents => 100).formatted_price
+    assert_equal "10.50", Product.new(:price_in_cents => 1050).formatted_price
+  end
 end

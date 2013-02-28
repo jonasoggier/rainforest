@@ -22,10 +22,19 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "email must be unique" do
-    u1 = FactoryGirl.create(:user)
-    u2 = FactoryGirl.build(:user) # same password
+    u1 = FactoryGirl.create(:user, :email => "name@example.com")
+    u2 = FactoryGirl.build(:user, :email => "name@example.com")
     refute u2.valid?
     u2.email = "new@example.com"
     assert u2.valid?
+  end
+
+  test "can have many reviews" do
+    u = FactoryGirl.create(:user)
+    r1 = FactoryGirl.create(:review, :user => u)
+    r2 = FactoryGirl.create(:review, :user => u)
+
+    u.reload
+    assert_equal u.reviews, [r1, r2]
   end
 end

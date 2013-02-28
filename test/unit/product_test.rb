@@ -32,4 +32,13 @@ class ProductTest < ActiveSupport::TestCase
     assert_equal "1.00", Product.new(:price_in_cents => 100).formatted_price
     assert_equal "10.50", Product.new(:price_in_cents => 1050).formatted_price
   end
+
+  test "can have many reviews" do
+    p = FactoryGirl.create(:product)
+    r1 = FactoryGirl.create(:review, :product => p)
+    r2 = FactoryGirl.create(:review, :product => p)
+
+    p.reload
+    assert_equal p.reviews, [r1, r2]
+  end
 end

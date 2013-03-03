@@ -39,6 +39,6 @@ class ProductTest < ActiveSupport::TestCase
     r2 = FactoryGirl.create(:review, :product => p)
 
     p.reload
-    assert_equal p.reviews, [r1, r2]
+    assert_equal p.reviews, [r2, r1]
   end
 end

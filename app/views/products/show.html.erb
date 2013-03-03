@@ -16,3 +16,17 @@
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
+
+<div class="reviews">
+  <h2>Reviews</h2>
+
+  <%= link_to "Add a review", new_review_path(:product_id => @product.id) %>
+
+  <% @product.reviews.each do |review| %>
+    <div class="review">
+      <%= review.comment %>
+      <br/>
+      <p>- by <%= review.user.email %></p>
+    </div>
+  <% end %>
+</div>

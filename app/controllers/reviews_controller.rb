@@ -15,6 +15,7 @@ class ReviewsController < ApplicationController
   # GET /reviews/new
   def new
     @review = Review.new
+    @review.product_id = params[:product_id]
   end
 
   # GET /reviews/1/edit
@@ -34,7 +35,7 @@ class ReviewsController < ApplicationController
     @review.user = current_user
 
     if @review.save
-      redirect_to @review, notice: 'Review was successfully created.'
+      redirect_to @review.product, notice: 'Review was successfully created.'
     else
       render action: "new"
     end

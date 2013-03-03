@@ -32,7 +32,7 @@ class ReviewsControllerTest < ActionController::TestCase
       post :create, review: { comment: @review.comment, product_id: @review.product.id }
     end
 
-    assert_redirected_to review_path(assigns(:review))
+    assert_redirected_to product_path(assigns(:review).product)
   end
 
   test "should not create review if not logged in" do

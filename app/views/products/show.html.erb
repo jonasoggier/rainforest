@@ -26,7 +26,7 @@
     <div class="review">
       <%= review.comment %>
       <br/>
-      <p>- by <%= review.user.name %></p>
+      <p>- by <%= link_to review.user.name, user_path(review.user) %></p>
     </div>
   <% end %>
 </div>

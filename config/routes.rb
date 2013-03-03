@@ -1,4 +1,7 @@
 Rainforest::Application.routes.draw do
+
+  root :to => 'homepage#index'
+
   resources :categories
   resources :reviews
   resources :products

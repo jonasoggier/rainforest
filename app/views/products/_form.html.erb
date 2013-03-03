@@ -23,6 +23,16 @@
     <%= f.label :price_in_cents %><br />
     <%= f.number_field :price_in_cents %>
   </div>
+
+  <div>Categories</div>
+  <% for category in Category.find(:all) %>
+      <div>
+        <%= check_box_tag "product[category_ids][]", category.id, @product.categories.include?(category) %>
+        <%= category.name %>
+      </div>
+  <% end %>
+
+  <p/>
   <div class="actions">
     <%= f.submit %>
   </div>

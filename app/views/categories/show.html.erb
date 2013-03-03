@@ -3,6 +3,14 @@
   <%= @category.name %>
 </p>
 
+<p>
+  <b>Products:</b>
+  <ul>
+    <% @category.products.each do |product| %>
+      <li><%= link_to product.name, product_path(product) %></li>
+    <% end %>
+  </ul>
+</p>
 
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>

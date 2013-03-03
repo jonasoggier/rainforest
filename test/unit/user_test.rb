@@ -38,6 +38,16 @@ class UserTest < ActiveSupport::TestCase
     assert_equal u.reviews, [r1, r2]
   end
 
+  test "can list products it has reviewed without duplicates" do
+    u = FactoryGirl.create(:user)
+    r1 = FactoryGirl.create(:review, :user => u)
+    r2 = FactoryGirl.create(:review, :user => u)
+    r3 = FactoryGirl.create(:review, :user => u, :product => r2.product)
+
+    u.reload
+    assert_equal u.reviewed_products, [r1.product, r2.product]
+  end
+
   test "must have a name" do
     u = FactoryGirl.create(:user)
     assert u.valid?

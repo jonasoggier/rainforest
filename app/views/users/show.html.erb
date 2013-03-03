@@ -1,1 +1,12 @@
 <h1><%= @user.name %></h1>
+
+<% if @user.reviewed_products.empty? %>
+  <%= @user.name %> hasn't reviewed any products yet.
+<% else %>
+  <%= @user.name %> has reviewed the following products:
+  <ul>
+    <% @user.reviewed_products.each do | product | %>
+      <li><%= link_to product.name, product_path(product) %></li>
+    <% end %>
+  </ul>
+<% end %>

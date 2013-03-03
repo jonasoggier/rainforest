@@ -8,4 +8,5 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
 
   has_many :reviews
+  has_many :reviewed_products, :through => :reviews, :source => :product, :uniq => true
 end

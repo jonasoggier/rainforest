@@ -41,4 +41,14 @@ class ProductTest < ActiveSupport::TestCase
     p.reload
     assert_equal p.reviews, [r2, r1]
   end
+
+  test "can list users that have reviewed it without duplicates" do
+    p = FactoryGirl.create(:product)
+    r1 = FactoryGirl.create(:review, :product => p)
+    r2 = FactoryGirl.create(:review, :product => p)
+    r3 = FactoryGirl.create(:review, :product => p, :user => r2.user)
+
+    p.reload
+    assert_equal p.reviewers, [r1.user, r2.user]
+  end
 end

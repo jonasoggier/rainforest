@@ -20,7 +20,9 @@
 <div class="reviews">
   <h2>Reviews</h2>
 
-  <%= link_to "Add a review", new_review_path(:product_id => @product.id) %>
+  <%= @product.reviewers.count %> people have reviewed this product.
+  <%= link_to "Add a review", new_review_path(:product_id => @product.id) %>.
+
 
   <% @product.reviews.each do |review| %>
     <div class="review">

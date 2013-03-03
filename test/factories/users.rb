@@ -5,5 +5,6 @@ FactoryGirl.define do
     sequence(:email) {|n| "person#{n}@example.com" }
     password "secret"
     password_confirmation "secret"
+    name "Example User"
   end
 end

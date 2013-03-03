@@ -37,4 +37,11 @@ class UserTest < ActiveSupport::TestCase
     u.reload
     assert_equal u.reviews, [r1, r2]
   end
+
+  test "must have a name" do
+    u = FactoryGirl.create(:user)
+    assert u.valid?
+    u.name = ""
+    refute u.valid?
+  end
 end
